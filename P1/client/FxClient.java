@@ -6,11 +6,6 @@ public class FxClient {
 	public static void main(String[] args) throws Exception {
 		String command = args[0];
 		String fileName = args[1];
-		int fileSize = 0; 
-
-		if(args.length == 3){ // If the optional arg exists
-			fileSize = Integer.parseInt(args[2]);
-		}
 
 		try (Socket connectionToServer = new Socket("localhost", 80)) {
 
@@ -60,12 +55,13 @@ public class FxClient {
 				}
 
 			} else if (command.equals("u")) {
-				String header = "upload " + fileName + " " + fileSize + "\n";
-				headerWriter.write(header, 0, header.length());
-				headerWriter.flush();
-
 				try{
 					FileInputStream fileIn = new FileInputStream("ClientShare/" + fileName);
+					int fileSize = fileIn.available();
+
+					String header = "upload " + fileName + " " + fileSize + "\n";
+					headerWriter.write(header, 0, header.length());
+					headerWriter.flush();
 
 					byte[] bytes = new byte[fileSize];
 					fileIn.read(bytes);
@@ -74,7 +70,7 @@ public class FxClient {
 
 					dataOut.write(bytes, 0, fileSize);
 				} catch(Exception ex){
-					System.out.println("The file doesn't exist.");
+					System.out.println("The specified file doesn't exist.");
 				}
 
 			} else {
