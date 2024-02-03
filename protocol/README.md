@@ -19,9 +19,12 @@ Upon receiving this header, the server searches for the specified file.
 
 The client then checks if it already has the file already downloaded and with the same last modified time.
 
-- If the file is found with the same modified time, the download is skipped. The client informs the server with a header: -**NO[one space]DOWNLOAD[Line Feed]**
+- If the file is found with the same modified time, the download is skipped. The client informs the server with a header:
 
-- If the file is not found, OR the modified time is different, then the client informs the server with the following header: -**DOWNLOAD[Line Feed]**
+  - **NO[one space]DOWNLOAD[Line Feed]**
+
+- If the file is not found, OR the modified time is different, then the client informs the server with the following header:
+  - **DOWNLOAD[Line Feed]**
   - The server proceeds to send the file's bytes to the client.
 
 ## Resume Download
