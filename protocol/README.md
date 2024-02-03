@@ -22,8 +22,7 @@ The client then checks if it already has the file already downloaded and with th
 - If the file is found with the same modified time, the download is skipped. The client informs the server with a header: -**NO[one space]DOWNLOAD[Line Feed]**
 
 - If the file is not found, OR the modified time is different, then the client informs the server with the following header: -**DOWNLOAD[Line Feed]**
-
-The server proceeds to send the file's bytes to the client.
+  - The server proceeds to send the file's bytes to the client.
 
 ## Resume Download
 
@@ -48,7 +47,7 @@ If the client wants to upload a file, then the header will be as the following:
 
 After sending the header, the client shall send the bytes of the file
 
-## Get list of files
+## Get List of Files
 
 If the client wants to get a list of all the files shareable by the server, then the header will be as the following:
 
